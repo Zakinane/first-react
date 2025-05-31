@@ -1,23 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useState } from "react";
+import Acceuil from "./pages/acceuil.js";
+import Contact from "./pages/contact.js";
 
 function App() {
+  let [page, setPage] = useState("acceuil");
+
+  const changePage = () => {
+    if (page === "acceuil") {
+      setPage("contact");
+    } else {
+      setPage("acceuil");
+    }
+  };
+  let nowPage = page === "acceuil" ? <Acceuil /> : <Contact />;
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {nowPage}
+      <button onClick={changePage}>Change the page</button>
     </div>
   );
 }
